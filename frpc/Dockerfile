@@ -6,6 +6,8 @@ LABEL maintainer="madwind.cn@gmail.com" \
         org.label-schema.name="frpc" \
         org.label-schema.version=$FRP_VERSION
 
+COPY rootfs /
+
 RUN set -ex && \
     apk add --no-cache tzdata && \
     wget https://github.com/fatedier/frp/releases/download/v${FRP_VERSION}/frp_${FRP_VERSION}_linux_amd64.tar.gz && \
@@ -17,8 +19,7 @@ RUN set -ex && \
     cd .. && \
     rm -rf *.tar.gz frp_${FRP_VERSION}_linux_amd64 && \
    	echo "Asia/Shanghai" >  /etc/timezone && \
+    chmod +x /usr/bin/entrypoint.sh && \
     rm -rf /var/cache/apk/*
-
-COPY rootfs /
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
