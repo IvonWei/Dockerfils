@@ -1,13 +1,12 @@
 FROM alpine
 
-ARG FRP_VERSION=0.33.0
+ARG FRP_VERSION=0.34.0
 
 LABEL maintainer="madwind.cn@gmail.com" \
         org.label-schema.name="frpc" \
         org.label-schema.version=$FRP_VERSION
 
 RUN set -ex && \
-    sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
     apk add --no-cache tzdata && \
     wget https://github.com/fatedier/frp/releases/download/v${FRP_VERSION}/frp_${FRP_VERSION}_linux_amd64.tar.gz && \
     tar -zxf frp_${FRP_VERSION}_linux_amd64.tar.gz && \
