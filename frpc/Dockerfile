@@ -8,8 +8,7 @@ LABEL maintainer="madwind.cn@gmail.com" \
 
 COPY rootfs /
 
-RUN set -ex && \
-    apk add --no-cache tzdata && \
+RUN apk add --no-cache tzdata && \
     wget https://github.com/fatedier/frp/releases/download/v${FRP_VERSION}/frp_${FRP_VERSION}_linux_amd64.tar.gz && \
     tar -zxf frp_${FRP_VERSION}_linux_amd64.tar.gz && \
     cd frp_${FRP_VERSION}_linux_amd64 && \
